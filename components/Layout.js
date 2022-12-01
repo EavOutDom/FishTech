@@ -19,7 +19,7 @@ const Layout = ({ children, footer = true, header = true }) => {
         <Link href='/cart' legacyBehavior>
           <a className="flex items-center justify-center text-primary-500" style={{ textDecoration: "none" }}>
             <TiShoppingCart size={34} />
-            <span className="ml-1 md:ml-2 font-semibold">${fishList.length > 0 && fishList.map(v => v.price).reduce((acc, curr) => acc + curr).toFixed(2)}</span>
+            <span className="ml-1 md:ml-2 font-semibold">{fishList.length > 0 && '$' + fishList.map(v => v.price).reduce((acc, curr) => acc + curr).toFixed(2)}</span>
           </a>
         </Link>
       </div>

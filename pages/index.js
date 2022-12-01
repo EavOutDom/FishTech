@@ -1,9 +1,6 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import Contact from '../components/Contact';
 import Jumbotron from '../components/Jumbotron';
 import ProductList from '../components/ProductList';
-import styles from '../styles/Home.module.css'
 
 export default function Home(props) {
 
