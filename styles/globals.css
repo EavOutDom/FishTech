@@ -9,6 +9,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  @apply bg-white text-black dark:bg-black dark:text-white
 }
 
 a {
@@ -29,23 +30,18 @@ form label {
 }
 
 form input {
-  @apply p-2.5 mt-2 mb-3 bg-inherit outline outline-1 outline-black/10 focus:outline-blue-500 hover:outline-blue-500
+  @apply p-2.5 mt-2 mb-3 bg-inherit outline outline-1 dark:outline-white/10 dark:focus:outline-blue-500 dark:hover:outline-blue-500 outline-black/10 focus:outline-blue-500 hover:outline-blue-500
+}
+
+option {
+  @apply dark:bg-black
 }
  
 form select{
-  @apply p-2.5 mt-2 mb-3 bg-inherit outline outline-1 outline-black/10 focus:outline-blue-500 hover:outline-blue-500
+  @apply p-2.5 mt-2 mb-3 bg-inherit outline outline-1 dark:outline-white/10 dark:focus:outline-blue-500 dark:hover:outline-blue-500 outline-black/10 focus:outline-blue-500 hover:outline-blue-500
 }
 
 .drawer {
   min-width: 200px;
   @apply absolute bg-white transition-transform duration-300 inset-y-0 right-0 translate-x-full;
 }
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;s
-    background: black;
-  }
-} */

@@ -36,7 +36,7 @@ const Drawer = ({ children, className = "", style, open, onClose, icon = true })
 
   if (!open && !mount) return null;
 
-  return (<section className="fixed inset-0 bg-black/50 transition-all duration-300 opacity-0 z-20" ref={ref} onClick={handleClose}>
+  return (<section className="fixed inset-0 bg-black/50 dark:bg-white/50 transition-all duration-300 opacity-0 z-20" ref={ref} onClick={handleClose}>
     <div className={`drawer ${className}`} style={style} onClick={e => e.stopPropagation()}>
       {icon && <span className="flex justify-center items-center rounded-full hover:bg-gray-400 hover:text-white absolute top-2 right-2 w-8 h-8 cursor-pointer font-bold" onClick={handleClose}>✕</span>}
       {children}

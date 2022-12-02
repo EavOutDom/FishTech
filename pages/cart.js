@@ -16,22 +16,22 @@ const Cart = () => {
   let summary = ObjectToArray(list);
 
   const handleIncrease = value => {
-    shopDispatch({ type: 'ADD_TO_CART', payload: [...fishList, value] });
+    shopDispatch({ type: 'SET_CART', payload: [...fishList, value] });
   };
 
   const handleDecrease = (index) => {
     summary[index].pop();
     let arr1d = [].concat(...summary);
-    shopDispatch({ type: 'REMOVED_FROM_CART', payload: arr1d })
+    shopDispatch({ type: 'SET_CART', payload: arr1d })
   };
 
   const handleRemoveFishCard = value => {
     shopDispatch({
-      type: 'REMOVED_FROM_CART', payload: [...fishList].filter(item => item.id !== value.id)
+      type: 'SET_CART', payload: [...fishList].filter(item => item.id !== value.id)
     });
   };
 
-  return (<>
+  return (<div className='min-h-screen'>
     <div className='flex items-center justify-between'>
       <Link href='/' legacyBehavior>
         <a>
@@ -48,7 +48,7 @@ const Cart = () => {
     </div>
     <div className='py-10'>
       {summary.length > 0 ? summary.map((item, index) => {
-        return <div key={index} className='shadow-md mb-5 p-5 bg-black/5'>
+        return <div key={index} className='shadow-md mb-5 p-5 bg-black/5 dark:bg-white/5'>
           <div className='flex justify-between'>
             <div className='w-2/6 md:w-1/6'>
               <img src={item[0].image} alt={item[0].name} className='object-contain w-full h-full' />
@@ -98,7 +98,7 @@ const Cart = () => {
         </div>
       </div>}
     </div>
-  </>);
+  </div>);
 };
 
 export const getServerSideProps = () => {

@@ -7,7 +7,7 @@ const Contact = () => {
     <p className='text-center py-5 text-xl'>We are looking forward to hearing from you. Feel free to contact us
       if you have any questions!</p>
     <div className='flex justify-center'>
-      <Button className="bg-black text-white">Contact Us</Button>
+      <Button className="dark:bg-white dark:text-black bg-black text-white">Contact Us</Button>
     </div>
   </div>);
 }

@@ -16,22 +16,22 @@ const Checkout = () => {
   let summary = ObjectToArray(list);
 
   const handleIncrease = value => {
-    shopDispatch({ type: 'ADD_TO_CART', payload: [...fishList, value] });
+    shopDispatch({ type: 'SET_CART', payload: [...fishList, value] });
   };
 
   const handleDecrease = (index) => {
     summary[index].pop();
     let arr1d = [].concat(...summary);
-    shopDispatch({ type: 'REMOVED_FROM_CART', payload: arr1d })
+    shopDispatch({ type: 'SET_CART', payload: arr1d })
   };
 
   const handleRemoveFishCard = value => {
     shopDispatch({
-      type: 'REMOVED_FROM_CART', payload: [...fishList].filter(item => item.id !== value.id)
+      type: 'SET_CART', payload: [...fishList].filter(item => item.id !== value.id)
     });
   };
 
-  return (<>
+  return (<div className="min-h-screen">
     <Link href='/cart' legacyBehavior>
       <a>
         <Button className='!p-0'>
@@ -40,7 +40,7 @@ const Checkout = () => {
       </a>
     </Link>
     <div className="py-6 grid grid-cols-10 gap-4 items-start">
-      <div className="col-span-10 md:col-span-6 shadow-md p-6 bg-black/5 relative">
+      <div className="col-span-10 md:col-span-6 shadow-md p-6 bg-black/5 dark:bg-white/5 relative">
         <div className="absolute top-6 -left-4 rounded-full w-8 h-8 bg-blue-500 text-white flex items-center justify-center">
           <span>1</span>
         </div>
@@ -84,9 +84,9 @@ const Checkout = () => {
           <Button className='bg-blue-700 text-white'>Continue to payment</Button>
         </form>
       </div>
-      <div className="shadow-md p-5 bg-black/5 col-span-10 md:col-span-4">
+      <div className="shadow-md p-5 bg-black/5 dark:bg-white/5 col-span-10 md:col-span-4">
         <div className="w-full flex justify-between items-center">
-          <h1 className="text-xl font-semibold">Order summary</h1>
+          <h1 className="text-xl font-semibold" >Order summary</h1>
           <Button className='text-blue-500 underline !p-0' onClick={() => setShowDrawer(true)}>Edit</Button>
         </div>
         <div className="mb-4">
@@ -155,7 +155,7 @@ const Checkout = () => {
         </div>}
       </div>
     </Drawer>
-  </>);
+  </div>);
 }
 
 export default Checkout;

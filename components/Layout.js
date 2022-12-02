@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { useContext } from 'react';
 import { ShopContext } from '../store/ShopContext';
 import { reducePrice } from '../util/sevice';
+import { CiDark, CiLight } from 'react-icons/ci'
 
 const Layout = ({ children, footer = true, header = true }) => {
-  const { shopState: { fishList } } = useContext(ShopContext);
+  const { shopState: { fishList, isDark }, shopDispatch } = useContext(ShopContext);
 
   return <>
     {header && <header className="w-full max-w-[1000px] mx-auto p-5 md:px-0 flex items-center sticky top-0 left-0 backdrop-blur-md">
@@ -24,10 +25,13 @@ const Layout = ({ children, footer = true, header = true }) => {
           </a>
         </Link>
       </div>
+      <div className='ml-5 flex items-center cursor-pointer gap-1' onClick={() => { shopDispatch({ type: "SET_DARK", payload: !isDark }); }}>
+        {isDark ? <><CiDark size="18" /> Light mode</> : <><CiLight size="18" /> Dark mode</>}
+      </div>
     </header>}
     <main className="w-full max-w-[1000px] mx-auto p-5 md:px-0">{children}</main>
-    {footer && <footer className=" bg-black w-full">
-      <div className="w-full max-w-[1000px] mx-auto p-5 md:px-0 flex items-center justify-center text-white">
+    {footer && <footer className="dark:bg-white bg-black w-full">
+      <div className="w-full max-w-[1000px] mx-auto p-5 md:px-0 flex items-center justify-center text-white dark:text-black">
         <a href="https://github.com/eavoutdom" target='_blank' rel="noreferrer">
           Github
         </a>

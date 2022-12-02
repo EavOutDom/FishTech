@@ -16,7 +16,7 @@ const ProductList = (props) => {
         <p className="pt-5 pb-10">{data.description}</p>
         <div className="flex gap-5 items-center">
           <p className="text-2xl font-medium">${data.price.toFixed(2)}</p>
-          <Button className='bg-primary-500 text-white' onClick={() => shopDispatch({ type: 'ADD_TO_CART', payload: [...fishList, data] })}>Add to card</Button>
+          <Button className='bg-primary-500 text-white' onClick={() => shopDispatch({ type: 'SET_CART', payload: [...fishList, data] })}>Add to card</Button>
         </div>
       </div>
     </div>))}

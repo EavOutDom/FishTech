@@ -1,16 +1,22 @@
 export const shopReducer = (state, { type, payload }) => {
   switch (type) {
-    case 'ADD_TO_CART':
+    case 'SET_CART':
       localStorage.setItem('fishList', JSON.stringify(payload));
       return {
         ...state,
         fishList: payload
       }
-    case 'REMOVED_FROM_CART':
-      localStorage.setItem('fishList', JSON.stringify(payload));
+    case 'SET_DARK':
+      if (payload) {
+        localStorage.setItem('darkMode', payload);
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+        localStorage.removeItem('darkMode');
+      }
       return {
         ...state,
-        fishList: payload
+        isDark: payload
       }
     default:
       return state;
