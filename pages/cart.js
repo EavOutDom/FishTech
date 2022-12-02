@@ -2,39 +2,18 @@ import Link from 'next/link'
 import Button from '../components/Button';
 import { BsArrowRight, BsFillArrowLeftCircleFill, BsFillPatchMinusFill, BsFillPatchPlusFill } from 'react-icons/bs';
 import { HiShoppingBag } from 'react-icons/hi';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { ShopContext } from '../store/ShopContext';
 import { BsFillTrashFill } from 'react-icons/bs';
 import vm from '../public/visa-and-mastercard-logos-logo-visa-png-logo-visa-mastercard-png-visa-logo-white-png-awesome-logos.png';
 import Image from 'next/image';
+import { groupArray, ObjectToArray, reducePrice } from '../util/sevice';
 
 const Cart = () => {
   const { shopState: { fishList }, shopDispatch } = useContext(ShopContext);
-  const [test, setTest] = useState([]);
-  useEffect(() => {
-    setTest([...fishList]);
-  }, [fishList]);
 
-  const groupBy = (items, key) => items.reduce(
-    (result, item) => ({
-      ...result,
-      [item[key]]: [
-        ...(result[item[key]] || []),
-        item,
-      ],
-    }),
-    {},
-  );
-
-  const ObjectToArray = (list) => {
-    return Object.entries(list).map(entry => {
-      return { [entry[0]]: entry[1] };
-    })
-  }
-
-  const list = groupBy(fishList, 'id');
-  const objKey = Object.keys(list);
-  let summary = objKey.map(l => list[l]);
+  const list = groupArray(fishList, 'id');
+  let summary = ObjectToArray(list);
 
   const handleIncrease = value => {
     shopDispatch({ type: 'ADD_TO_CART', payload: [...fishList, value] });
@@ -54,7 +33,7 @@ const Cart = () => {
 
   return (<>
     <div className='flex items-center justify-between'>
-      <Link href={'/'} legacyBehavior>
+      <Link href='/' legacyBehavior>
         <a>
           <Button className='!p-0'>
             <BsFillArrowLeftCircleFill size={35} className='text-primary-500' />
@@ -95,7 +74,7 @@ const Cart = () => {
                 <BsFillPatchPlusFill size={20} className='text-blue-700' />
               </Button>
             </div>
-            <div className='w-16 text-end'>${item.map(i => i.price).reduce((acc, curr) => acc + curr).toFixed(2)}</div>
+            <div className='w-16 text-end'>{reducePrice(item)}</div>
           </div>
         </div>
       }) : <p className='text-center text-xl'>No add cart</p>}
@@ -105,12 +84,16 @@ const Cart = () => {
           <p>Shipping and taxes will be calculated at checkout.</p>
           <div className='flex justify-between'>
             <p><strong>Total</strong></p>
-            <p>${fishList.length > 0 && fishList.map(v => v.price).reduce((acc, curr) => acc + curr).toFixed(2)}</p>
+            <p>{reducePrice(fishList)}</p>
           </div>
-          <Button className='flex justify-center items-center gap-5 bg-blue-700 mt-2.5 text-white w-full'>
-            <span>Checkout</span>
-            <BsArrowRight size={30} />
-          </Button>
+          <Link href={{ pathname: '/checkout' }} legacyBehavior>
+            <a>
+              <Button className='flex justify-center items-center gap-5 bg-blue-700 mt-2.5 text-white w-full'>
+                <span>Checkout</span>
+                <BsArrowRight size={30} />
+              </Button>
+            </a>
+          </Link>
           <Image src={vm} alt='vm' className='mt-10 w-40 mx-auto' />
         </div>
       </div>}

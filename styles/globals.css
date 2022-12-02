@@ -20,12 +20,32 @@ a {
   box-sizing: border-box;
 }
 
+form {
+  @apply flex flex-col
+}
+
+form label {
+  @apply text-sm opacity-80
+}
+
+form input {
+  @apply p-2.5 mt-2 mb-3 bg-inherit outline outline-1 outline-black/10 focus:outline-blue-500 hover:outline-blue-500
+}
+ 
+form select{
+  @apply p-2.5 mt-2 mb-3 bg-inherit outline outline-1 outline-black/10 focus:outline-blue-500 hover:outline-blue-500
+}
+
+.drawer {
+  min-width: 200px;
+  @apply absolute bg-white transition-transform duration-300 inset-y-0 right-0 translate-x-full;
+}
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
-    color: white;
+    color: white;s
     background: black;
   }
 } */
