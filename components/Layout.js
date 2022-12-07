@@ -1,7 +1,7 @@
 import { TiShoppingCart } from 'react-icons/ti';
 import { GiFishCorpse } from 'react-icons/gi';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { Fragment, useContext } from 'react';
 import { ShopContext } from '../store/ShopContext';
 import { reducePrice } from '../util/sevice';
 import { CiDark, CiLight } from 'react-icons/ci'
@@ -26,7 +26,7 @@ const Layout = ({ children, footer = true, header = true }) => {
         </Link>
       </div>
       <div className='ml-5 flex items-center cursor-pointer gap-1' onClick={() => { shopDispatch({ type: "SET_DARK", payload: !isDark }); }}>
-        {isDark ? <><CiDark size="18" /> Light mode</> : <><CiLight size="18" /> Dark mode</>}
+        {isDark ? <><CiLight size="18" /> Light mode</> : <><CiDark size="18" /> Dark mode</>}
       </div>
     </header>}
     <main className="w-full max-w-[1000px] mx-auto p-5 md:px-0">{children}</main>

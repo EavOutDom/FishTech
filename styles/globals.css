@@ -9,7 +9,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  @apply bg-white text-black dark:bg-black dark:text-white
+  transition: background 300ms linear;
+  @apply bg-white text-black dark:bg-black dark:text-white duration-300
 }
 
 a {
