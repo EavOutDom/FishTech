@@ -5,6 +5,7 @@ import { Fragment, useContext } from 'react';
 import { ShopContext } from '../store/ShopContext';
 import { reducePrice } from '../util/sevice';
 import { CiDark, CiLight } from 'react-icons/ci'
+import Theme from './Theme';
 
 const Layout = ({ children, footer = true, header = true }) => {
   const { shopState: { fishList, isDark }, shopDispatch } = useContext(ShopContext);
@@ -17,7 +18,7 @@ const Layout = ({ children, footer = true, header = true }) => {
           <h1 className="text-xl md:text-2xl ml-2.5 md:ml-5 font-bold">FistTech</h1>
         </a>
       </Link>
-      <div className='ml-auto'>
+      <div className='ml-auto mr-4'>
         <Link href='/cart' legacyBehavior>
           <a className="flex items-center justify-center text-primary-500" style={{ textDecoration: "none" }}>
             <TiShoppingCart size={34} />
@@ -25,9 +26,7 @@ const Layout = ({ children, footer = true, header = true }) => {
           </a>
         </Link>
       </div>
-      <div className='ml-5 flex items-center cursor-pointer gap-1' onClick={() => { shopDispatch({ type: "SET_DARK", payload: !isDark }); }}>
-        {isDark ? <><CiLight size="18" /> Light mode</> : <><CiDark size="18" /> Dark mode</>}
-      </div>
+      <Theme />
     </header>}
     <main className="w-full max-w-[1000px] mx-auto p-5 md:px-0">{children}</main>
     {footer && <footer className="dark:bg-white bg-black w-full">

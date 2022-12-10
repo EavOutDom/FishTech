@@ -44,5 +44,5 @@ form select{
 
 .drawer {
   min-width: 200px;
-  @apply absolute bg-white transition-transform duration-300 inset-y-0 right-0 translate-x-full;
+  @apply absolute dark:bg-black bg-white transition-transform duration-300 inset-y-0 right-0 translate-x-full;
 }
