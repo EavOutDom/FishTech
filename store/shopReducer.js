@@ -1,5 +1,10 @@
 export const shopReducer = (state, { type, payload }) => {
   switch (type) {
+    case 'SET_LOADING':
+      return {
+        ...state,
+        isLoading: payload
+      }
     case 'SET_CART':
       localStorage.setItem('fishList', JSON.stringify(payload));
       return {

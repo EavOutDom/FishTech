@@ -6,7 +6,8 @@ export const ShopContext = createContext();
 const ShopContextProvider = ({ children }) => {
   const [shopState, shopDispatch] = useReducer(shopReducer, {
     fishList: [],
-    isDark: null
+    isDark: null,
+    isLoading: false,
   });
 
   useEffect(() => {
